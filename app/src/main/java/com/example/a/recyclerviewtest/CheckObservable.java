@@ -14,9 +14,9 @@ public class CheckObservable extends Observable<CheckObservable.Observer> {
     }
 
     public static CheckObservable getInstance() {
-        synchronized (CheckObservable.class) {
-            if (mInstance == null) {
-                synchronized (CheckObservable.class) {
+        if (mInstance == null) {
+            synchronized (CheckObservable.class) {
+                if (mInstance == null) {
                     mInstance = new CheckObservable();
                 }
             }
