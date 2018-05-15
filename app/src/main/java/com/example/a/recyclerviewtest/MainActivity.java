@@ -1,10 +1,12 @@
 package com.example.a.recyclerviewtest;
 
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         initData();
         adapter.setOnItemLongClickListener(new RecyclerAdapter.OnItemLongClickListener() {
             @Override
-            public boolean onLongClick(RecyclerViewHolder holder) {
+            public boolean onLongClick(View view,int position) {
                 CheckObservable.getInstance().notifyChanged();
                 adapter.notifyDataSetChanged();
                 return false;

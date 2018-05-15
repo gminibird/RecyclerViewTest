@@ -32,6 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        holder.getView().setTag(position);
         setListener(holder);
         mItemList.get(position).convert(holder);
     }
@@ -57,7 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
             holder.getView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mClickListener.onClick(holder);
+                    mClickListener.onClick(v,(int)v.getTag());
                 }
             });
         }
@@ -65,7 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
             holder.getView().setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    return mLongClickListener.onLongClick(holder);
+                    return mLongClickListener.onLongClick(v,(int)v.getTag());
                 }
             });
         }
@@ -80,10 +81,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     }
 
     public interface OnItemClickListener {
-        void onClick(RecyclerViewHolder holder);
+        void onClick(View view,int position);
     }
 
     public interface OnItemLongClickListener {
-        boolean onLongClick(RecyclerViewHolder holder);
+        boolean onLongClick(View view,int position);
     }
 }
